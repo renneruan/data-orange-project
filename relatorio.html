@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>relatorio.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2>Atividade Avaliativa</h2>
+<h4>Disciplina: Coleta e gestão de dados</h4>
+<h4>Aluno: Rennê Ruan Alves Oliveira</h4>
+<h2>Resumo</h2>
+A partir de uma base de dados disponível, utilizando a ferramenta Orange, devemos realizar uma análise exploratória dos dados, submetê-los aos tratamentos necessários e aplicar modelos de machine learning, resgatando os resultados dos modelos aplicados comparando as diversas abordagens de como os dados podem ser tratados.
+<br>
+Foram utilizados dados de um abrigo de animais de Austin (EUA), o mesmo possui predominantemente dados categóricos, consequentemente foram utilizados modelos de aprendizados que suportassem entradas e saídas categóricas, como Naive Bayes, Regressão Logística e Random Forest. Os resultados foram satisfatórios frente aos atributos utilizados e notou-se melhora na acurácia dos modelos na medida que os dados foram tratados.
+<section>
+<h2>Coleta do conjunto de dados</h2>
+Os dados utilizados foram coletados a partir da plataforma Kaggle. Eles se referem a dados de saída dos animais do abrigo de Austin (Austin Animal Center) , localizado nos Estados Unidos.
+<p>O dataset pode ser acessado pelo link: <a>https://www.kaggle.com/datasets/aaronschlegel/austin-animal-center-shelter-outcomes-and</a></p>
+<p>O mesmo se encontra desatualizado tendo sua última atualização datada há 7 anos atrás, possuindo 147 upvotes e 7741 downloads. Cabe ressaltar que o site do abrigo de Austin disponibiliza uma API para resgate dos dados mais recentes, além de disponibilizá-los em formato CSV. Porém para a proposta deste trabalho, um conjunto de dados pequenos e mais direcionados cumpriam o propósito, sendo os disponibilizados pelo Kaggle mais fáceis de serem carregados a ferramenta Orange.</p>
+<p>Além do recorte inicial de data, utilizamos o dataset com as saídas apenas de gatos do abrigo (aac_shelter_cat_outcome_eng.csv), com isso poderiamos realizar uma análise e predição mais direcionada para uma amostra populacional específica.</p>
+<p>O conjunto de dados conta com 37 colunas: age_upon_outcome, animal_id, animal_type, breed, color, date_of_birth, datetime, monthyear, name, outcome_subtype, outcome_type, sex_upon_outcome, count, sex, Spay/Neuter, Periods,  Period Range, outcome_age_(days), outcome_age_(years), Cat/Kitten (outcome), sex_age_outcome, age_group, dob_year, dob_month, dob_monthyear, outcome_month, outcome_year, outcome_weekday, outcome_hour, breed1, breed2, cfa_breed, domestic_breed, coat_pattern, color1, color2, coat.</p>
+<div style="text-align: center">
+    <figure name="coleta">
+        <img
+        width=150
+        src="imagens/orange_coleta.png"
+        alt="coleta">
+        <figcaption>Figura 1: Widgets para carregamento dos dados.</figcaption>
+    </figure>
+</div>
+<p>Foram utilizados os widgets (<a href="#coleta">Figura 1</a>) CSV file import para importação dos dados e estes foram visualizados utilizando o widget Data Table (<a href="#coleta2">Figura 2</a>).</p>
+<div style="text-align: center">
+    <figure name="coleta2">
+        <img
+        src="imagens/orange_coleta2.png"
+        alt="coleta2">
+        <figcaption>Figura 2: Visualização inicial dos dados</figcaption>
+    </figure>
+</div>
+<p>Como informado pelo Widget Data table, o dataset possui 29421 registros, 37 colunas, sendo 3 delas de meta atributo e 34 de atributos, possuindo 6,9% de dados faltantes.</p>
+<p>Mais sobre as colunas e o que cada uma representa será discutido na próxima seção de tratamento dos dados <a href="#tratamento">Seção 2</a>.</p>
+</section>
+<section name="tratamento">
+<h2>Limpeza e preparação dos Dados</h2>
+Numa análise exploratória inicial podemos perceber que a base de dados contém muitas variávels. Ao analisar inicialmente, nota-se que muitas delas possuem valores repetidos, porém com um outro formato, enquanto outras quase não possuem dados preenchidos.   
+<br>
+Vamos repassar o significado de cada coluna, para verificar quais colunas podem ser utilizadas de alvo e de atributo.
+<p>As colunas de meta-dados são:</p>
+<ul>
+<li>animal_id: Id único do animal no abrigo</li>
+<li>name: Nome do animal</li>
+<li>color: Cor do animal, concatenando as diferentes pelagens</li>
+</ul>
+<p>As demais colunas são:</p>
+<ul>
+<li>age_upon_outcome: Idade do animal no momento de saída do abrigo, campo de texto sem unidade definida</li>
+<li>animal_type: Tipo do animal analisado, para esta base de dados terá um único valor, pois há apenas gatos</li>
+<li>breed: Raça do gato</li>
+<li>date_of_birth: Data de nascimento do animal</li>
+<li>datetime: Data da saída do animal</li>
+<li>monthyer: Possui os mesmos valore de datetime</li>
+<li>outcome_type: Tipo da saída do animal do abrigo</li>
+<li>outcome_subtype: Sub-tipo de saída do animal</li>
+<li>sex_upon_outcome: Estado reprodutivo do animal ao sair do abrigo</li>
+<li>count: Coluna sem descrição, com apenas valores 1</li>
+<li>sex: Sexo do animal</li>
+<li>Spay/Neuter: Estado de castração do animal</li>
+<li>Periods: Sem descrição formal, assume-se que é a quantidade de cios que o animal possuiu</li>
+<li>Period Range: Sem descrição formal, provavelmente é o período médio de cio do animal</li>
+<li>outcome_age(days): Tempo para saída do animal em dias</li>
+<li>outcome_age(years): Tempo para saída do animal em anos</li>
+<li>Cat/Kitten(outcome): Se animal classificado como gato adulto ou filhote</li>
+<li>age_group: Sem descrição formal, intervalos de idade em que o animal se encaixa</li>
+<li>dob_year: Sem descrição formal</li>
+<li>dob_month: Sem descrição formal</li>
+<li>dob_monthyear: Sem descrição formal</li>
+<li>outcome_month: Mês da saída</li>
+<li>outcome_year: Ano da saída</li>
+<li>outcome_weekday: Dia da semana da saída</li>
+<li>outcome_hour: Hora de saída</li>
+<li>breed1: Mesmos dados de raça da coluna breed</li>
+<li>breed2: Possui 100% dos valores como nulo</li>
+<li>cfa_breed: Raça possui certificação/pedigree</li>
+<li>domestic_breed: Se é uma raça doméstica</li>
+<li>coat_pattern: Tipo de padrão de pelagem</li>
+<li>color1: Tipo de cor primária, semelhante a coluna color, porém possui apenas a cor predominante</li>
+<li>color2: Tipo da cor secundária, em conjunto com a coluna color1 gera a coluna color, 65% dos valores nulos</li>
+<li>coat: Possui os mesmos valores que color1</li>
+</ul>
+<p>Os dados apresentam uma grande necessidade de limpeza, em boa parte das colunas que podem ser utilizadas. Temos que o melhor candidato para uma coluna alvo visando realizar determinada predição ou estudo de análise seja a coluna <code>outcome_type</code> que significa o tipo de saída do animal do abrigo. Com ela podemos predizer de acordo com as características do animal, qual será o destino dele, se será adotado, transferido ou no pior dos casos eutanasiado.
+<br></p>
+<p>As medidas de limpeza tomadas foram:</p>
+<ul>
+<li>Descarte de colunas sem especificação definida.</li>
+<li>Descarte de todas as colunas de tempo e data referente a saída do animal.</li>
+<li>Utilização de apenas uma coluna para a idade do animal no momento de saída, foi utilizada a coluna <code>outcome_age(years)</code>.</li>
+<li>Descarte das colunas com muitos dados faltantes como <code>breed2</code> e <code>color2</code></li>
+<li>Descarte das colunas referentes aos períodos de cio.</li>
+<li>Descarte da coluna de nascimento e nome do animal.</li>
+</ul>
+<p>Ao final temos as colunas utilizadas para criação do modelo:
+<code>breed, sex_upon_outcome, sex, Spay Neuter, outcome_age(years), Cat/Kitten (outcome), sex_age_outcome, breed1, cfa_breed, domestic_breed, coat_pattern, color1, coat</code>.</p>
+<p>Temos que as colunas selecionadas trazem informações, principalmente referente a pelagem, sexo e idade do animal.</p>
+<p>Após a seleção inicial, verificamos as problemáticas de cada coluna selecionada. Verificamos havia diversos valores nulos na coluna <code>coat_pattern</code>. Porém a informação de nulidade também agrega informação ao animal, ou seja podemos classificar o padrão de pelagem como outro ou não definido. Para sanar isto, foi utilizado o widget Impute, com as configurações presentes na <a href="#impute">figura 3</a>. Para os demais dados, foi utilizado o método padrão de popular dados faltantes com a Média/Moda, apenas para a coluna <code>coat_pattern</code> atribuímos a um novo valor com a configuração <code>As a distinct value</code> onde os valores nulos foram substituídos por <code>N/A</code>, possível visualizar o resultado na <a href="#impute_table">figura 4</a></p>
+<div style="text-align: center">
+    <figure name="impute">
+        <img
+        src="imagens/impute.png"
+        alt="impute">
+        <figcaption>Figura 3: Configurações Impute</figcaption>
+    </figure>
+</div>
+<div style="text-align: center">
+    <figure name="impute_table">
+        <img
+        src="imagens/impute_table.png"
+        alt="impute_table">
+        <figcaption>Figura 4: Dados nulos substituídos</figcaption>
+    </figure>
+</div>
+<p>Em seguida devemos tratar o formato das variáveis, como temos uma saída categórica e das variáveis selecionadas, todas são categóricas, exceto a idade de saída <code>outcome_age(years)</code>, seria prudente apenas converter a variável de idade numérica para valores categóricos. Foi realizada a discretização dos valores com o widget Preprocess. As configurações utilizadas podem ser visualizadas na <a href="#preprocess">figura 5</a></p>
+<div style="text-align: center">
+    <figure name="preprocess">
+        <img
+        src="imagens/preprocess.png"
+        alt="preprocess">
+        <figcaption>Figura 5: Configurações para discretização</figcaption>
+    </figure>
+</div>
+<p>Por último, foi identificado utilizando o widget Pivot que os valores de coloração apresentavam diferentes escritas para um mesmo tipo de valor. ou seja <code>black</code> também estava escrito como <code>black </code>,  em que este segundo há um espaço em branco ao final da string. Para realizar o tratamento dessas strings, foi utilizado o framework Edit Domain, em que os valores podem ser alterados manualmente, as configurações podem ser vistas na <a href="#edit_domain">figura 6</a>.</p>
+<div style="text-align: center">
+    <figure name="edit_domain">
+        <img
+        src="imagens/edit_domain.png"
+        alt="domain">
+        <figcaption>Figura 6: Edição de valores com diferentes escritas</figcaption>
+    </figure>
+</div>
+</section>
+<section>
+<h2>Análise exploratória dos dados</h2>
+Em seguida realizamos a análise exploratória dos dados. Temos predominantemente variáveis categóricas, ou seja, seria difícil aplicar gráficos como de dispersão, sendo o mais aplicável, gráficos de barra ou distribuição. Foi utilizado o framework Distributions, com ele é possível verificar graficamente como as variáveis se relacionam com a saída.
+<br>
+<p>Percebemos que a cor de maior predominância entre os animais do abrigo, são os gatos de cor preta, em seguida os de coloração marrom. Por haver muitas classes nas variáveis, encontramos dificuldades na visualização do eixo x. (<a href="#grafico_cor">Figura 7</a>)</p>
+<div style="text-align: center">
+    <figure name="grafico_cor">
+        <img
+        src="imagens/grafico_color.png"
+        alt="cor">
+        <figcaption>Figura 7: Gráfico de coloração</figcaption>
+    </figure>
+</div>
+<p>Referente as datas de saída dos animais em ano (<a href="#grafico_outcome">figura 8</a>) temos a maior porcentagem centrada no intervalo de 0,130 (46 dias) a 0,205 (75 dias). Gatos mais jovens tem maior frequência nos dados analisados, isso pode ser visualizado com melhor exatidão antes da etapa de discretização.</p>
+<div style="text-align: center">
+    <figure name="grafico_outcome">
+        <img
+        src="imagens/grafico_outcome_years.png"
+        alt="outcome_years">
+        <figcaption>Figura 8: Histograma com o tempo de saída em anos</figcaption>
+    </figure>
+</div>
+<p>As saídas possuem 2 classes com maior predominância, caracterizando um desbalanceamento nas demais classificações, isso pode influenciar no resultado das predições e modelos aplicados. As classes de maior predominância são, Adoption e Transfer, o gráfico referente pode ser visualizado na <a href="#grafico_type">figura 9</a>.</p>
+<div style="text-align: center">
+    <figure name="grafico_type">
+        <img
+        src="imagens/grafico_outcome_type.png"
+        alt="outcome_type">
+        <figcaption>Figura 9: Gráfico com tipos de saída</figcaption>
+    </figure>
+</div>
+</section>
+<section>
+<h2>Mineração dos Dados</h2>
+<p>Foram aplicados alguns algoritmos possível para dados categóricos com saídas categóricas, sendo eles: Naive Bayes, Logistic Regression, Random Forest e Gradiente Boosting. A aplicação de Árvores de Decisão não se tornou possível pois o Orange não permite que sejam aplicadas variáveis com mais de 16 classes diferentes.</p>
+<p>O algoritmo com melhor desempenho foi o de regressão logística (Logistic Regression) com AUC de 0.881, mais informações acerca das acurácias obtidas serão discutidas na próxima seção, avaliação dos resultado.</p>
+<p>Aplicado ao modelo previamente citado, utilizamos o widget de Predictions para verificar se foram realizadas predições condizentes com o esperado e como as saídas estavam se comportando.</p>
+<div style="text-align: center">
+    <figure name="logistic_outcome">
+        <img
+        src="imagens/logistic_outcome.png"
+        alt="logistic_outcome">
+        <figcaption>Figura 10: Predições realizadas pelo algorimto de regressão logística</figcaption>
+    </figure>
+</div>
+<p>Na <a href="#logistic_outcome">figura 10</a> temos exemplos de predições realizadas, realizando uma análise superficional neste pedaço de amostrado coletado, percebe-se que o algoritmo te dificuldade de predizer casos além dos predominantes, como Adoption ou Transfer, tal problema levante a necessidade de desbalancear os dados, ou seja, prover dados com quantidades semelhantes de animais com outros tipos de saída.</p>
+<p>As associações obtidas pelo widget Frequent Itemsets e Association não foram de fácil interpretação, e não proveram informações acerca dos tipos de saída, porém serviram como uma visão geral das porcentagens dos tipos de dados. Podemos visualizar o resultado do widget na <a href="#association">figura 11</a></p>
+<div style="text-align: center">
+    <figure name="association">
+        <img
+        src="imagens/association.png"
+        alt="association">
+        <figcaption>Figura 11: Regras de associação</figcaption>
+    </figure>
+</div>
+<p>Temos que as informações e valores predominantes são de atributos com pouca variedade de classificações, geralmente Sim/Não. Não ficou claro se as regras de associação utilizam da coluna target para sua saída, uma vez que não houve nenhuma associação que remetesse a <code>outcome_type</code>.</p>
+</section>
+<section>
+<h2>Avaliação dos Resultados</h2>
+<p>Inicialmente foi utilizado o algoritmo Naive Bayes para verificar como o tratamento dos dados influenciavam no refinamento da acurácia do modelo e no AUC obtido. Submetemos o Naive Bayes a diferentes formatos dos dados, (1) sem nenhum tratamento, (2) colunas selecionadas e valores nulos sanados, (3) adicional 2 com junção de classes de texto semelhantes mas escritas diferentes, (4) adicional ao 2 com discretização dos valores numéricos, (5) todos os processamentos anteriores realizados.
+12</p>
+<table style="text-align: center">
+  <thead>
+    <tr>
+        <th>Tipo de Pré-processamento</th>
+      <th>AUC</th>
+      <th>Precision</th>
+      <th>Recall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>(1)</td>
+      <td>0.854</td>
+      <td>0.742</td>
+      <td>0.640</td>
+    </tr>
+    <tr>
+     <td>(2)</td>
+      <td>0.854</td>
+      <td>0.743</td>
+      <td>0.638</td>
+    </tr>
+    <tr>
+     <td>(3)</td>
+      <td>0.854</td>
+      <td>0.743</td>
+      <td>0.640</td>
+    </tr>
+     <tr>
+     <td>(4)</td>
+      <td>0.863</td>
+      <td>0.753</td>
+      <td>0.640</td>
+    </tr>
+    <tr>
+     <td>(5)</td>
+      <td>0.864</td>
+      <td>0.753</td>
+      <td>0.641</td>
+    </tr>
+  </tbody>
+</table>
+<p>Como resultado, visualizamos que realizar os pré-processamentos trouxe uma melhoria no resultado do modelo, não foram mudanças expressivas nos valores, porém corroboramos a necessidade do tratamento de dados inicial. Deste ponto agora podemos comparar diferentes modelos para verificar qual melhor se aplica aos dados utilizados. Utilizamos: Naive Bayes, Logistic Regression, Random Forest e Gradiente Boosting, podemos visualizar o resultado dos diferentes modelos na <a href="#results">figura 12</a></p>
+<div style="text-align: center">
+    <figure name="results">
+        <img
+        src="imagens/results.png"
+        alt="results">
+        <figcaption>Figura 12: Resultados de modelos aos dados tratados e processados.</figcaption>
+    </figure>
+</div>
+<p>Temos que o modelo de Logistic Regression e o Gradient Boosting tiveram resultados semelhantes, sendo o de Logistic Regression 5 vezes mais rápido.</p>
+<h2>Conclusão</h2>
+<p>Temos que o algoritmo de regressão logística obteve o melhor resultado na predição de saídas dos animais do abrigo com AUC de 0.881. Melhores insights e refinamento do modelo podem ser obtidos ao sanar o desbalanceamento das diferentes classes de saída.
+A maior porcentagem de gatos no abrigo são os que possuem características mais propensas para gatos de rua, como pelagem malhada, coloração preta ou marrom e não possuem raça definida.</p>
+<p>O fluxo inteiro pode ser visualizado na figura 13</p>
+<div style="text-align: center">
+    <figure name="flow">
+        <img
+        src="imagens/flow.png"
+        alt="flow">
+        <figcaption>Figura 13: Fluxo de widgets do Orange.</figcaption>
+    </figure>
+</div>
+</body>
+</html>
