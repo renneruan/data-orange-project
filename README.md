@@ -1,7 +1,5 @@
 # Análise de dados de abrigo de animais 
 
-Este projeto foi desenvolvido para a disciplina de Coleta e Gestão de dados, presente na especialização em Ciência de Dados e Machine Learning do Centro Universitário de Brasília.
-
 O objetivo do projeto, pauta aplicar os conhecimentos de ciência de dados em uma base de dados com tamanho pequeno médio, utilizando a ferramenta Orange, que pode ser acessada pelo conjunto de pacotes Anaconda.
 
 A partir de uma base de dados disponível, utilizando a ferramenta Orange, devemos realizar uma análise exploratória dos dados, submetê-los aos tratamentos necessários e aplicar modelos de machine learning, resgatando os resultados dos modelos aplicados comparando as diversas abordagens de como os dados podem ser tratados.
